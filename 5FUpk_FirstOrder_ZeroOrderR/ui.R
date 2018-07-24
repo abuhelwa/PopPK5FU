@@ -77,14 +77,21 @@ shinyUI(fluidPage(
                        
                        #Slider input for dose
                        sliderInput("ORAL_DOSE", "Oral dose (mg):",
-                                   min = 0, max = 100, value = 0.5, step = 0.5)
+                                   min = 0, max = 100, value = 20, step = 0.5)
       ),   #Close conditional panel
     
 
      conditionalPanel(condition = "input.SELECT == 2",
                       
-                      p(h3("Set up other parameters as needed!"))
+                      p(h3("Set up first-order release parameters:"))
      ),   #Close conditional panel
+     
+     conditionalPanel(condition = "input.SELECT == 2",
+                      #Slider input for dose
+                      sliderInput("KDISS", "First-order dissolution rate constant (1/h):",
+                                  min = 0, max = 0.20, value = 0.0015, step = 0.0005)
+     ),   #Close conditional panel
+     
      
      conditionalPanel(condition = "input.SELECT == 2",
                       
@@ -92,6 +99,13 @@ shinyUI(fluidPage(
                       sliderInput("FRMUCUS", "Fraction of dose dissolved into mucus:",
                                   min = 0, max = 1, value = 0.9, step = 0.1)
      ),   #Close conditional panel
+     
+     
+     conditionalPanel(condition = "input.SELECT == 2",
+                      
+                      p(h3("Set up other parameters:"))
+     ),   #Close conditional panel
+     
      
      conditionalPanel(condition = "input.SELECT == 2",
                       
@@ -108,11 +122,7 @@ shinyUI(fluidPage(
                                   min = 0, max = 1, value = 0.6, step = 0.1)
      ),   #Close conditional panel
 
-     conditionalPanel(condition = "input.SELECT == 2",
-                      #Slider input for dose
-                      sliderInput("KDISS", "First-order dissolution rate constant (1/h):",
-                                  min = 0, max = 0.20, value = 0.0015, step = 0.0005)
-     ),   #Close conditional panel
+
      
      conditionalPanel(condition = "input.SELECT == 2",
                       
@@ -182,12 +192,12 @@ shinyUI(fluidPage(
                       
                       #Slider input for dose
                       sliderInput("ORAL_DOSE0", "Oral dose (mg):",
-                                  min = 0, max = 100, value = 10, step = 0.5)
+                                  min = 0, max = 100, value = 20, step = 0.5)
      ),   #Close conditional panel
      
      conditionalPanel(condition = "input.SELECT == 3",
                       
-                      p(h3("Set up Zero-Order parameters:"))
+                      p(h3("Set up zero-order release parameters:"))
      ),   #Close conditional panel
      
      conditionalPanel(condition = "input.SELECT == 3",
@@ -208,7 +218,7 @@ shinyUI(fluidPage(
 
      conditionalPanel(condition = "input.SELECT == 3",
                       
-                      p(h3("Set up First-Order parameters:"))
+                      p(h3("Set up first-order release parameters:"))
      ),   #Close conditional panel
      
      
