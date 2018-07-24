@@ -16,7 +16,7 @@
     #Define population PKPD model
     #-------------------------------------------------------------- 
     # Set number of individuals that make up the 95% prediction intervals
-    n <- 3
+    n <- 1
     # 95% prediction interval functions - calculate the 2.5th and 97.5th percentiles
     CI95lo <- function(x) quantile(x,probs = 0.025)
     CI95hi <- function(x) quantile(x,probs = 0.975)
@@ -24,7 +24,7 @@
     CI90lo <- function(x) quantile(x,probs = 0.05)
     CI90hi <- function(x) quantile(x,probs = 0.95)    
     
-    #-----------------------------------------------------------------------------------------------    
+    #---------------------------------------------------------------   
     code <- '
     
     $GLOBAL
