@@ -26,12 +26,12 @@ shinyServer(function(input,output){
       POPQESOIV    <- input$POPQESOIV
 
       #set up sim dataframe
-      ADD <- round(DAYS/(tau/24) - 1 + 0.0000000001, digits = 0)
+      ADD <- round(DAYS/(tau) - 1 + 0.0000000001, digits = 0)
       INFRATE <- IV_DOSE*1000/INF_DURATION  #ug/hour
 
       tlast <- DAYS*24
       tau   <- tau*24
-      TIME.tgrid <- c(tgrid(0,tlast,1))
+      TIME.tgrid <- c(tgrid(0,tlast,0.25))
 
       #dosing record dataset
       events <-  ev(ID=1:n, amt=IV_DOSE*1000, rate = INFRATE, cmt=2, addl=ADD, ii= tau)
