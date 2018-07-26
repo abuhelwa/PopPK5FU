@@ -114,6 +114,13 @@ shinyUI(fluidPage(
                                   min = 0, max = 1, value = 0.9, step = 0.1)
      ),   #Close conditional panel
      
+     conditionalPanel(condition = "input.SELECT == 2",
+                      
+                      #Slider input for dose
+                      sliderInput("ThalfABSESO", "Absorption half-life from the mucus (minutes):",
+                                  min = 1, max = 180, value = 20, step = 1)
+     ),   #Close conditional panel
+     
      
      conditionalPanel(condition = "input.SELECT == 2",
                       
@@ -122,13 +129,6 @@ shinyUI(fluidPage(
                                   min = 0, max = 1, value = 0.6, step = 0.1)
      ),   #Close conditional panel
 
-     
-     conditionalPanel(condition = "input.SELECT == 2",
-                      
-                      #Slider input for dose
-                      sliderInput("ThalfABSESO", "Absorption half-life from the esophagus (minutes):",
-                                  min = 1, max = 180, value = 20, step = 1)
-     ),   #Close conditional panel
      
      conditionalPanel(condition = "input.SELECT == 2",
                       
@@ -248,15 +248,15 @@ shinyUI(fluidPage(
      conditionalPanel(condition = "input.SELECT == 3",
                       
                       #Slider input for dose
-                      sliderInput("FABSGUT0", "Fraction absorbed from the Gut:",
-                                  min = 0, max = 1, value = 0.6, step = 0.1)
+                      sliderInput("ThalfABSESO0", "Absorption half-life from the mucus (minutes):",
+                                  min = 1, max = 180, value = 20, step = 1)
      ),   #Close conditional panel
      
      conditionalPanel(condition = "input.SELECT == 3",
                       
                       #Slider input for dose
-                      sliderInput("ThalfABSESO0", "Absorption half-life from the esophagus (minutes):",
-                                  min = 1, max = 180, value = 20, step = 1)
+                      sliderInput("FABSGUT0", "Fraction absorbed from the Gut:",
+                                  min = 0, max = 1, value = 0.6, step = 0.1)
      ),   #Close conditional panel
      
      conditionalPanel(condition = "input.SELECT == 3",
