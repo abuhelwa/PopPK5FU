@@ -16,7 +16,7 @@
     #Define population PKPD model
     #-------------------------------------------------------------- 
     # Set number of individuals that make up the 95% prediction intervals
-    n <- 3
+    n <- 2
     # 95% prediction interval functions - calculate the 2.5th and 97.5th percentiles
     CI95lo <- function(x) quantile(x,probs = 0.025)
     CI95hi <- function(x) quantile(x,probs = 0.975)
@@ -32,7 +32,7 @@
     
     $SET delta=1
     
-    $CMT GUT CENT PER ESO MUCUS DEPOT 
+    $CMT GUT CENT PER ESO MUCUS DEPOT WASTE
     
     $PARAM       //these are default values
     REL =1 
@@ -99,7 +99,9 @@
     double FRMUCUS = THETA14;  //Fraction going into mucus
     double FRGUT = (1-THETA14);  //Fraction going into GUT
 
-    double FABSGUT = THETA15;  //Fraction absorbed from the GUT 
+    double FABSGUT = THETA15;  //Fraction absorbed from the GUT
+    double FRWASTE = (1 - THETA15); //Fraction not absorbed from the gut (wasted)
+
     double FABSMUCUC = THETA16; //Fraction absorbed from mucus
     double FTRANSITMUCUSGUT = (1-THETA16);
 
@@ -108,13 +110,14 @@
     double C3 = PER/VP;         //Peripheral CMT
     double C4 = ESO/VESO;       //Esophageous CMT
  
-    dxdt_GUT    = FRGUT*KTRDepotGut*DEPOT + FTRANSITMUCUSGUT*KTRMucusGut*MUCUS-FABSGUT*KA*GUT;
+    dxdt_GUT    = FRGUT*KTRDepotGut*DEPOT + FTRANSITMUCUSGUT*KTRMucusGut*MUCUS-FABSGUT*KA*GUT - FRWASTE*KA*GUT;
     dxdt_CENT   =  FABSGUT*KA*GUT + QESO*C4 +  Q*C3 - Q*C2 - CL*C2 - QESO*C2;
     dxdt_PER    = Q*C2 - Q*C3;
     
     dxdt_ESO    =  FABSMUCUC*KAESO*MUCUS + QESO*C2 - QESO * C4;
     dxdt_MUCUS  =  FRMUCUS*KDISS*DEPOT - FABSMUCUC*KAESO*MUCUS - FTRANSITMUCUSGUT*KTRMucusGut*MUCUS;   //MUCUS CMT
     dxdt_DEPOT   = -FRMUCUS*KDISS*DEPOT - FRGUT*KTRDepotGut*DEPOT;     //DEPOT CMT
+    dxdt_WASTE  = FRWASTE*KA*GUT;
 
     $OMEGA @name BSV @annotated
     PPV_CL: 0 : PPV on CL
