@@ -141,15 +141,15 @@ shinyUI(fluidPage(
      conditionalPanel(condition = "input.SELECT == 2",
                       
                       #Slider input for dose
-                      sliderInput("KTRDepotGut", "Transit rate constant (Depot to Gut) (1/h):",
-                                  min = 0, max = 4, value = 0.2, step = 0.05)
+                      sliderInput("MTTDepotGut", "Mean transit time (Depot to Gut) (hours):",
+                                  min = 0, max = 10, value = 2, step = 0.5)
      ),   #Close conditional panel
      
      conditionalPanel(condition = "input.SELECT == 2",
                       
                       #Slider input for dose
-                      sliderInput("KTRMucusGut", "Transit rate constant (Mucus to Gut) (1/h):",
-                                  min = 0, max = 4, value = 0.2, step = 0.05)
+                      sliderInput("MTTMucusGut", "Mean transit time (Mucus to Gut) (hours):",
+                                  min = 0, max = 10, value = 2, step = 0.5)
      ),   #Close conditional panel
      
      
@@ -269,17 +269,16 @@ shinyUI(fluidPage(
      conditionalPanel(condition = "input.SELECT == 3",
                       
                       #Slider input for dose
-                      sliderInput("KTRDepotGut0", "Transit rate constant (Depot to Gut) (1/h):",
-                                  min = 0, max = 4, value = 0.2, step = 0.05)
+                      sliderInput("MTTDepotGut0", "Mean transit time (Depot to Gut) (hours):",
+                                  min = 0, max = 10, value = 2, step = 0.5)
      ),   #Close conditional panel
      
      conditionalPanel(condition = "input.SELECT == 3",
                       
                       #Slider input for dose
-                      sliderInput("KTRMucusGut0", "Transit rate constant (Mucus to Gut) (1/h):",
-                                  min = 0, max = 4, value = 0.2, step = 0.05)
+                      sliderInput("MTTMucusGut0", "Mean transit time (Mucus to Gut) (hours):",
+                                  min = 0, max = 10, value = 2, step = 0.5)
      ),   #Close conditional panel
-     
      
      
      conditionalPanel(condition = "input.SELECT == 3",

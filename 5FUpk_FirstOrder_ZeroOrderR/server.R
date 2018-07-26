@@ -51,8 +51,8 @@ shinyServer(function(input,output){
     
     ThalfABSESO  <- input$ThalfABSESO
     ThalfABSGUT  <- input$ThalfABSGUT
-    KTRDepotGut <- input$KTRDepotGut
-    KTRMucusGut <- input$KTRMucusGut
+    MTTDepotGut <- input$MTTDepotGut
+    MTTMucusGut <- input$MTTMucusGut
     POPVMUCUS   <- input$POPVMUCUS
 
     POPVESO <- input$POPVESO
@@ -66,6 +66,12 @@ shinyServer(function(input,output){
     
     #Calculate KAESO from t1/2
     KAESO = log(2)/(ThalfABSESO/60) #convert t0.5  from minutes to hours to have KA (1/h)
+    
+    #Calculate MTT for Depot to Gut
+    KTRDepotGut <- 1/MTTDepotGut  #units in hours
+    
+    #Calculate MTT for Mucuc to Gut
+    KTRMucusGut <- 1/MTTMucusGut  #units in hours
     
     tlast <- DAYS*24
     tau   <- tau*24
@@ -100,8 +106,8 @@ shinyServer(function(input,output){
         
         ThalfABSESO0  <- input$ThalfABSESO0
         ThalfABSGUT0  <- input$ThalfABSGUT0
-        KTRDepotGut0 <- input$KTRDepotGut0
-        KTRMucusGut0 <- input$KTRMucusGut0
+        MTTDepotGut0 <- input$MTTDepotGut0
+        MTTMucusGut0 <- input$MTTMucusGut0
         POPVMUCUS0   <- input$POPVMUCUS0
         
         POPVESO0 <- input$POPVESO0
@@ -116,6 +122,11 @@ shinyServer(function(input,output){
         #Calculate KAESO from t1/2
         KAESO0 = log(2)/(ThalfABSESO0/60) #convert t0.5  from minutes to hours to have KA (1/h)
         
+        #Calculate MTT for Depot to Gut
+        KTRDepotGut0 <- 1/MTTDepotGut0  #units in hours
+        
+        #Calculate MTT for Mucuc to Gut
+        KTRMucusGut0 <- 1/MTTMucusGut0  #units in hours
         
         DISS_DURATION <- input$DISS_DURATION
         FRZERO        <- input$FRZERO
