@@ -49,8 +49,8 @@ shinyServer(function(input,output){
     ORAL_DOSE   <- input$ORAL_DOSE
     KDISS       <- input$KDISS
     
-    KAESO       <- input$KAESO
-    KA          <- input$KA
+    ThalfABSESO  <- input$ThalfABSESO
+    ThalfABSGUT  <- input$ThalfABSGUT
     KTRDepotGut <- input$KTRDepotGut
     KTRMucusGut <- input$KTRMucusGut
     POPVMUCUS   <- input$POPVMUCUS
@@ -60,6 +60,12 @@ shinyServer(function(input,output){
     FRMUCUS <- input$FRMUCUS
     FABSGUT <- input$FABSGUT
     FABSMUCUS <- input$FABSMUCUS
+    
+    #Calculate KA from t1/2 
+    KA = log(2)/(ThalfABSGUT/60) #convert t0.5  from minutes to hours to have KA (1/h)
+    
+    #Calculate KAESO from t1/2
+    KAESO = log(2)/(ThalfABSESO/60) #convert t0.5  from minutes to hours to have KA (1/h)
     
     tlast <- DAYS*24
     tau   <- tau*24
@@ -92,8 +98,8 @@ shinyServer(function(input,output){
         ORAL_DOSE0   <- input$ORAL_DOSE0
         KDISS0        <- input$KDISS0
         
-        KAESO0       <- input$KAESO0
-        KA0          <- input$KA0
+        ThalfABSESO0  <- input$ThalfABSESO0
+        ThalfABSGUT0  <- input$ThalfABSGUT0
         KTRDepotGut0 <- input$KTRDepotGut0
         KTRMucusGut0 <- input$KTRMucusGut0
         POPVMUCUS0   <- input$POPVMUCUS0
@@ -103,6 +109,13 @@ shinyServer(function(input,output){
         FRMUCUS0 <- input$FRMUCUS0
         FABSGUT0 <- input$FABSGUT0
         FABSMUCUS0 <- input$FABSMUCUS0
+        
+        #Calculate KA from t1/2 
+        KA0 = log(2)/(ThalfABSGUT0/60) #convert t0.5  from minutes to hours to have KA (1/h)
+        
+        #Calculate KAESO from t1/2
+        KAESO0 = log(2)/(ThalfABSESO0/60) #convert t0.5  from minutes to hours to have KA (1/h)
+        
         
         DISS_DURATION <- input$DISS_DURATION
         FRZERO        <- input$FRZERO
@@ -252,7 +265,7 @@ output$PLOTMADRS <- renderPlot({
     } #end  
     
     plotobj3 <- plotobj3 + stat_summary(aes(x=time/24, y=MUCUS), color="blue",fun.y=median, geom="line",  size=1)
-    plotobj3 <- plotobj3 + scale_y_continuous("Amount released in mucus (ug) \n") 
+    plotobj3 <- plotobj3 + scale_y_continuous("Amount of drug in mucus (ug) \n") 
     plotobj3 <- plotobj3 +  scale_x_continuous("\nTime after dose (days)", breaks = seq(0,XMAX, FREQ))
     plotobj3 <- plotobj3 + scale_colour_brewer(name="Response", palette="Set1") 
     plotobj3 <- plotobj3 + geom_text(aes(label = paste("Zero-order Dissolution Rate (ug/h) =",rate[3])), data = SIM.data()[[1]] ,x = xscalemax*0.8, y = yscalemax2*0.5, colour = "red", size = 5)

@@ -118,10 +118,24 @@ shinyUI(fluidPage(
      conditionalPanel(condition = "input.SELECT == 2",
                       
                       #Slider input for dose
-                      sliderInput("FABSGUT", "Bioavailability from the Gut:",
+                      sliderInput("FABSGUT", "Fraction absorbed from the Gut:",
                                   min = 0, max = 1, value = 0.6, step = 0.1)
      ),   #Close conditional panel
 
+     
+     conditionalPanel(condition = "input.SELECT == 2",
+                      
+                      #Slider input for dose
+                      sliderInput("ThalfABSESO", "Absorption half-life from the esophagus (minutes):",
+                                  min = 1, max = 180, value = 20, step = 1)
+     ),   #Close conditional panel
+     
+     conditionalPanel(condition = "input.SELECT == 2",
+                      
+                      #Slider input for dose
+                      sliderInput("ThalfABSGUT", "Absorption half-life  from Gut (minutes):",
+                                  min = 1, max = 180, value = 20, step = 1)
+     ),   #Close conditional panel
 
      
      conditionalPanel(condition = "input.SELECT == 2",
@@ -139,23 +153,6 @@ shinyUI(fluidPage(
      ),   #Close conditional panel
      
      
-
-     conditionalPanel(condition = "input.SELECT == 2",
-                      
-                      #Slider input for dose
-                      sliderInput("KAESO", "Absorption rate constant (esophagus) (1/h):",
-                                  min = 0, max = 4, value = 2.2, step = 0.1)
-     ),   #Close conditional panel
-     
- 
-     conditionalPanel(condition = "input.SELECT == 2",
-                      
-                      #Slider input for dose
-                      sliderInput("KA", "Absorption rate constant (intestine) (1/h):",
-                                  min = 0, max = 4, value = 2.2, step = 0.1)
-     ),   #Close conditional panel
-    
-
      conditionalPanel(condition = "input.SELECT == 2",
                       
                       p(h3("Vd and clearance for the esophageous compartments:"))
@@ -251,10 +248,23 @@ shinyUI(fluidPage(
      conditionalPanel(condition = "input.SELECT == 3",
                       
                       #Slider input for dose
-                      sliderInput("FABSGUT0", "Bioavailability from the Gut:",
+                      sliderInput("FABSGUT0", "Fraction absorbed from the Gut:",
                                   min = 0, max = 1, value = 0.6, step = 0.1)
      ),   #Close conditional panel
      
+     conditionalPanel(condition = "input.SELECT == 3",
+                      
+                      #Slider input for dose
+                      sliderInput("ThalfABSESO0", "Absorption half-life from the esophagus (minutes):",
+                                  min = 1, max = 180, value = 20, step = 1)
+     ),   #Close conditional panel
+     
+     conditionalPanel(condition = "input.SELECT == 3",
+                      
+                      #Slider input for dose
+                      sliderInput("ThalfABSGUT0", "Absorption half-life  from Gut (minutes):",
+                                  min = 1, max = 180, value = 20, step = 1)
+     ),   #Close conditional panel
      
      conditionalPanel(condition = "input.SELECT == 3",
                       
@@ -270,20 +280,6 @@ shinyUI(fluidPage(
                                   min = 0, max = 4, value = 0.2, step = 0.05)
      ),   #Close conditional panel
      
-     
-     conditionalPanel(condition = "input.SELECT == 3",
-                      
-                      #Slider input for dose
-                      sliderInput("KAESO0", "Absorption rate constant (esophagus) (1/h):",
-                                  min = 0, max = 4, value = 2.2, step = 0.1)
-     ),   #Close conditional panel
-     
-     conditionalPanel(condition = "input.SELECT == 3",
-                      
-                      #Slider input for dose
-                      sliderInput("KA0", "Absorption rate constant (intestine) (1/h):",
-                                  min = 0, max = 4, value = 2.2, step = 0.1)
-     ),   #Close conditional panel
      
      
      conditionalPanel(condition = "input.SELECT == 3",
